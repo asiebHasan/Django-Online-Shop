@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,15 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 CART_SESSION_ID = 'cart'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'asieb.hasan.supto@gmail.com'  # Your Gmail email address
+EMAIL_HOST_PASSWORD = 'eiowcnpfdmczpvwb'
+EMAIL_CLIENT_ID = '177065577891-2jhha31vn1nplf23m2gq1oh9cvjj0k6b.apps.googleusercontent.com'
+EMAIL_CLIENT_SECRET = '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'
+EMAIL_REFRESH_TOKEN = '1//04SiEBpjfH3BNCgYIARAAGAQSNwF-L9IrVYtLaNOrwCLsC0lai5fhBnAmhCfkP0_xQrLQVvWVR4wiS_MpjJr5bce1Y3vzKK8IgGI'
