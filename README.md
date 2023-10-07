@@ -14,7 +14,6 @@ celery:
 
 ```bash
     celery -A myshop worker --loglevel=info -P eventlet
-    celery -A myshop worker -l info
 ```
 
 flower:

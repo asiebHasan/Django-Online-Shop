@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
+
 from shop.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm
-
+from coupons.forms import CouponApplyForm
+from shop.recommender import Recommender
 # Create your views here.
 
 
@@ -36,4 +38,12 @@ def cart_detail(request):
             'quantity': item['quantity'],
             'override': True
         })
-    return render(request, 'cart/detail.html', {'cart': cart})
+    coupon_apply_form = CouponApplyForm
+    r = Recommender()
+    cart_products = [item['product'] for item in cart]
+    recommended_products = r.suggest_products_for(cart_products,
+                                                  max_results=4)
+    return render(request, 'cart/detail.html',
+                  {'cart': cart,
+                   'coupon_apply_form': coupon_apply_form,
+                   'recommended_products': recommended_products})

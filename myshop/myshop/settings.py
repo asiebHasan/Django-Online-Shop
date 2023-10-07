@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import braintree
 from pathlib import Path
 import os
 
@@ -41,6 +42,8 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
+    'coupons.apps.CouponsConfig',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +147,21 @@ EMAIL_HOST_PASSWORD = 'eiowcnpfdmczpvwb'
 EMAIL_CLIENT_ID = '177065577891-2jhha31vn1nplf23m2gq1oh9cvjj0k6b.apps.googleusercontent.com'
 EMAIL_CLIENT_SECRET = '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'
 EMAIL_REFRESH_TOKEN = '1//04SiEBpjfH3BNCgYIARAAGAQSNwF-L9IrVYtLaNOrwCLsC0lai5fhBnAmhCfkP0_xQrLQVvWVR4wiS_MpjJr5bce1Y3vzKK8IgGI'
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = '2v54hvs2xsvv9kgb'  # Merchant ID
+BRAINTREE_PUBLIC_KEY = '2pxxqfxjfgk9nsqz'  # Public Key
+BRAINTREE_PRIVATE_KEY = '0366a693b392d271669376e7dab93959'  # Private key
+
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 1
